@@ -1,7 +1,7 @@
 require "plurk/version"
+require "plurk/client"
 
 require "oauth"
 
 module Plurk
-  # Your code goes here...
 end
