@@ -23,9 +23,9 @@ module Plurk
       @request_token ||= @consumer.get_request_token
     end
 
-    # TODO: use launchy open url
     def authorize_url
       request_token.authorize_url
+      Launchy.open(request_token.authorize_url)
     end
 
     def get_access_token(oauth_verifier)
