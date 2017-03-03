@@ -9,6 +9,10 @@ module Plurk
       authorize_path:     "/OAuth/authorize"
     }
 
+    def self.config_file_path
+      ENV["PLURK_CONFIG_FILE"] || File.join(ENV['HOME'], '.plurk')
+    end
+
     def initialize(key, secret)
       @key, @secret = key, secret
       @consumer = OAuth::Consumer.new(@key, @secret, OAUTH_OPTIONS)
@@ -26,6 +30,13 @@ module Plurk
 
     def get_access_token(oauth_verifier)
       @access_token = request_token.get_access_token(oauth_verifier: oauth_verifier)
+
+      File.open(Plurk::Client.config_file_path, 'w') do |f|
+        f.puts @key
+        f.puts @secret
+        f.puts access_token.token
+        f.puts access_token.secret
+      end
     end
   end
 end
