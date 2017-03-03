@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
 
   spec.add_dependency "oauth", "~> 0.3.0"
+  spec.add_dependency "launchy"
 end
