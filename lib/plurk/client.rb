@@ -19,6 +19,17 @@ module Plurk
       @access_token = OAuth::AccessToken.new(@consumer, nil, nil)
     end
 
+    def authorize
+      puts "Auto open browser for you."
+      puts "Authorize url: #{authorize_url}"
+
+      # undefined method ask
+      puts "Enter Verification Number:"
+      oauth_verifier = gets.chomp
+
+      get_access_token(oauth_verifier)
+    end
+
     def request_token
       @request_token ||= @consumer.get_request_token
     end
